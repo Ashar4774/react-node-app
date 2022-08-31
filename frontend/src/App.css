@@ -40,6 +40,23 @@ ul.navbar-ul {
   margin: 20px 5px;
 }
 
+.product-list {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.product-list ul{
+  margin: 0;
+}
+
+.product-list ul li {
+  display: inline-block;
+  background-color: beige;
+  width: 150px;
+  border: 1px solid skyblue;
+  padding: 5px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

@@ -10,9 +10,14 @@ const AddProduct = () => {
     const [price, setPrice] = useState('');
     const userId = user_Id;
     const [company, setCompany] = useState('');
+    const [error, getError] = useState(false);
     const navigate = useNavigate();
 
     const addProduct = async () => {
+        if(!name || !price || !category || !company){
+            getError(true);
+            return false;
+        }
         let result = await fetch('http://​localhost:5000/product/add',{
             method: 'post',
             body: JSON.stringify({name, price, category, userId, company}),
@@ -36,11 +41,12 @@ const AddProduct = () => {
                 autoComplete="off"
             >
                 <FormControl fullWidth>
-                    <TextField type="text" className="outlined-basic" value={name} onChange={(event) => { setName(event.target.value); }} label="Name" variant="outlined" />
+                    <TextField type="text" className="outlined-basic" value={name} onChange={(event) => { setName(event.target.value); }} label="Name" variant="outlined" error={!name} helperText={!name ? 'Empty field!' : ' '} />
+                    
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <TextField type="text" className="outlined-basic" value={price} onChange={(event) => {setPrice(event.target.value)}} label="Price" variant="outlined" />
+                    <TextField type="text" className="outlined-basic" value={price} onChange={(event) => {setPrice(event.target.value)}} label="Price" variant="outlined" error={!price} helperText={!price ? 'Empty field!' : ' '}/>
                 </FormControl>
 
                 <FormControl fullWidth>
@@ -52,7 +58,7 @@ const AddProduct = () => {
                         label="Category"
                         onChange={(event) => {
                             setCategory(event.target.value);
-                        }}
+                        }} error={!category} helperText={!category ? 'Empty field!' : ' '}
                     >
                         <MenuItem value={"mobile"}>Mobile</MenuItem>
                         <MenuItem value={"laptop"}>Laptop</MenuItem>
@@ -66,7 +72,7 @@ const AddProduct = () => {
                 </FormControl> */}
 
                 <FormControl fullWidth>
-                    <TextField type="text" className="outlined-basic" value={company} onChange={(event) => {setCompany(event.target.value)}} label="Company" variant="outlined" />
+                    <TextField type="text" className="outlined-basic" value={company} onChange={(event) => {setCompany(event.target.value)}} label="Company" variant="outlined" error={!company} helperText={!company ? 'Empty field!' : ' '}/>
                 </FormControl>
                 &nbsp;
                 &nbsp;

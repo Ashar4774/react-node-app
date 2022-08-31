@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Box } from '@material-ui/core';
 
 const Nav = () => {
     const auth = localStorage.getItem('user');
@@ -10,7 +11,12 @@ const Nav = () => {
     }
     return (
         <div>
-            <img src='https://cdn3d.iconscout.com/3d/free/thumb/react-5645899-4695757.png' alt='react-logo' className='logo'/>
+            <Box
+                component="img"
+                alt="react-logo"
+                src="https://cdn3d.iconscout.com/3d/free/thumb/react-5645899-4695757.png"
+                className='logo'
+            />
             {
                 auth ? <ul className='navbar-ul'>
                     <li><Link to="/">Home</Link></li>
